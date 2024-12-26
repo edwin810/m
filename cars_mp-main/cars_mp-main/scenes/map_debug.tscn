@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scripts/map_debug.gd" type="Script" id=1]
+[ext_resource path="res://scenes/pickup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/pickups.tscn" type="PackedScene" id=3]
+[ext_resource path="res://material/road.tres" type="Material" id=6]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.245178, 0, -0.490341, 0, 0, 0, 0, 0, 0, 66.4021, 0, -128.214, 0, 0, 0, 0, 0, 0, 213.376, 0, -135.911, 0, 0, 0, 0, 0, 0, 285.456, 0, -13.8156, 0, 0, 0, 0, 0, 0, 253.261, 0, 127.979, 0, 0, 0, 0, 0, 0, 120.606, 0, 212.729, 0, 0, 0, 0, 0, 0, -68.6663, 0, 211.258, 0, 0, 0, 0, 0, 0, -194.42, 0, 124.056, 0, 0, 0, 0, 0, 0, -256.829, 0, 23.9008, 0, 0, 0, 0, 0, 0, -216.621, 0, -93.2908, 0, 0, 0, 0, 0, 0, -88.1513, 0, -96.7232, 0, 0, 0, 0, 0, 0, -5.19716, 0, -8.69358 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+up_vector_enabled = false
+
+[sub_resource type="PlaneMesh" id=2]
+
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( -1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1 )
+
+[node name="map_debug" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="pickups" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548958, 0, -242.471 )
+
+[node name="pickup" parent="pickups" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -98.8275 )
+
+[node name="checkpoints" type="Spatial" parent="."]
+
+[node name="road_path" type="Path" parent="."]
+curve = SubResource( 1 )
+
+[node name="road" type="StaticBody" parent="."]
+
+[node name="mesh_instance" type="MeshInstance" parent="road"]
+transform = Transform( 350, 0, 0, 0, 1, 0, 0, 0, 350, 0, 0, 0 )
+material_override = ExtResource( 6 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="collision_shape" type="CollisionShape" parent="road"]
+transform = Transform( 350, 0, 0, 0, 1, 0, 0, 0, 350, 0, 0, 0 )
+shape = SubResource( 3 )

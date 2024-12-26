@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/base_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/credis.gd" type="Script" id=2]
+[ext_resource path="res://ui/credits.tres" type="DynamicFont" id=3]
+
+[node name="credis" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="scroll_container" type="ScrollContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 30.0
+rect_min_size = Vector2( 500, 500 )
+
+[node name="v_box_container" type="VBoxContainer" parent="scroll_container"]
+margin_right = 1243.0
+margin_bottom = 566.0
+
+[node name="button" type="Button" parent="scroll_container/v_box_container"]
+margin_right = 1243.0
+margin_bottom = 97.0
+text = "< Back"
+align = 0
+
+[node name="label" type="Label" parent="scroll_container/v_box_container"]
+margin_top = 101.0
+margin_right = 1243.0
+margin_bottom = 253.0
+custom_fonts/font = ExtResource( 3 )
+text = "Extreme Sport Trap Music | PISTA by Alex-Productions | https://www.youtube.com/channel/UCx0_M61F81Nfb-BRXE-SeVA
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY 3.0
+https://creativecommons.org/licenses/by/3.0/
+ "
+
+[node name="label_3" type="Label" parent="scroll_container/v_box_container"]
+margin_top = 257.0
+margin_right = 1243.0
+margin_bottom = 409.0
+custom_fonts/font = ExtResource( 3 )
+text = "Snow field by 陽菜/Hina 
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC0 Public Domain
+https://creativecommons.org/publicdomain/zero/1.0/
+ "
+autowrap = true
+
+[node name="label_4" type="Label" parent="scroll_container/v_box_container"]
+margin_top = 413.0
+margin_right = 1243.0
+margin_bottom = 534.0
+custom_fonts/font = ExtResource( 3 )
+text = "Icons
+Mute icons created by Pixel perfect - Flaticon: https://www.flaticon.com/free-icons/mute
+Speaker icons created by Pixel perfect - Flaticon: https://www.flaticon.com/free-icons/speaker
+ "
+autowrap = true
+
+[node name="label_5" type="Label" parent="scroll_container/v_box_container"]
+margin_top = 538.0
+margin_right = 1243.0
+margin_bottom = 566.0
+custom_fonts/font = ExtResource( 3 )
+text = "Contains assets from ambientCG.com, licensed under CC0 1.0 Universal."
+autowrap = true
+
+[connection signal="pressed" from="scroll_container/v_box_container/button" to="." method="_on_button_pressed"]

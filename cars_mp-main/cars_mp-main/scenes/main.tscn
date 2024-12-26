@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/music_manager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/lunch_pad.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/main.gd" type="Script" id=3]
+[ext_resource path="res://scenes/ui.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/base_theme.tres" type="Theme" id=5]
+[ext_resource path="res://scenes/main_menu.tscn" type="PackedScene" id=6]
+
+[node name="main" type="Node"]
+script = ExtResource( 3 )
+
+[node name="display" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ui" parent="display" instance=ExtResource( 4 )]
+visible = false
+
+[node name="main_menu" parent="display" instance=ExtResource( 6 )]
+
+[node name="lunch_pad" parent="." instance=ExtResource( 2 )]
+
+[node name="characters" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+
+[node name="timer" type="Timer" parent="."]
+autostart = true
+
+[node name="output" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = -81.0
+margin_right = -53.0
+theme = ExtResource( 5 )
+text = "Output"
+
+[node name="music_manager" parent="." instance=ExtResource( 1 )]
+
+[connection signal="timeout" from="timer" to="." method="_on_timer_timeout"]

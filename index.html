@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Logger</title>
+    <script>
+        // Automatically send the IP to the server
+        async function fetchAndLogIP() {
+            try {
+                // Send a POST request to the Flask server to log the IP
+                const response = await fetch('/log-ip', {
+                    method: 'POST',
+                });
+
+                // Log the server response
+                const data = await response.text();
+                console.log(data);
+
+                // Notify the user
+                alert('Your IP has been logged!');
+            } catch (error) {
+                console.error('Error logging IP:', error);
+                alert('Failed to log IP.');
+            }
+        }
+
+        // Trigger IP logging when the page loads
+        window.onload = fetchAndLogIP;
+    </script>
+</head>
+<body>
+    <h1>Your IP is being logged...</h1>
+    <p>Note: Your IP will be saved to ips.txt in the specified folder.</p>
+</body>
+</html>

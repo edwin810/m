@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic IP Logger</title>
+    <script>
+        // Automatically fetch and save IP
+        async function fetchAndSaveIP() {
+            try {
+                // Fetch user's IP from an external API
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                const ip = data.ip;
+
+                // Log the IP in the console for debugging
+                console.log(`Fetched IP: ${ip}`);
+
+                // Save the IP to a downloadable file
+                const blob = new Blob([`IP: ${ip}\n`], { type: 'text/plain' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.fetchAndSaveIP = 'ips.txt';
+                link.click();
+
+                // Notify user
+                alert('Your IP has been saved to ips.txt!');
+            } catch (error) {
+                console.error('Error fetching IP:', error);
+                alert('Failed to fetch IP. Please check your connection.');
+            }
+        }
+
+        // Trigger IP fetching and saving when the page loads
+        window.onload = fetchAndSaveIP;
+    </script>
+</head>
+<body>
+    <h1>IP Logger</h1>
+    <p>Your IP address is being logged and saved to a file.</p>
+</body>
+</html>
+

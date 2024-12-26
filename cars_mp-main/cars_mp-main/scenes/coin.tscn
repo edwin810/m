@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/coin_mesh.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/coin.gd" type="Script" id=2]
+[ext_resource path="res://sound/pickup.wav" type="AudioStream" id=4]
+
+[sub_resource type="SphereShape" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "spin"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("coin_mesh:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.1, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("coin_mesh:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 360, 0 ) ]
+}
+
+[node name="coin" type="Spatial" groups=["coins"]]
+script = ExtResource( 2 )
+
+[node name="area" type="Area" parent="."]
+
+[node name="collision_shape" type="CollisionShape" parent="area"]
+shape = SubResource( 1 )
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+autoplay = "spin"
+anims/spin = SubResource( 2 )
+
+[node name="coin_mesh" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.942026, 0, -0.33554, 0, 1, 0, 0.33554, 0, 0.942026, 0, 0.0108919, 0 )
+
+[node name="audio_stream_player_3d" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+unit_db = 5.0
+unit_size = 5.0
+
+[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]

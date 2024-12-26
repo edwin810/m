@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Personal Website</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            perspective: 1000px;
+            background: #1a1a1a;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        header {
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(135deg, #6e48aa, #9d50bb);
+            color: #fff;
+            font-size: 2rem;
+            transition: transform 0.5s;
+            position: relative;
+            z-index: 10;
+        }
+        header:hover {
+            transform: translateZ(50px);
+        }
+        .nav-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .nav-link a {
+            color: #6e48aa;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border: 2px solid #6e48aa;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .nav-link a:hover {
+            background: #6e48aa;
+            color: #fff;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1200px;
+            position: relative;
+            z-index: 10;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            transition: transform 0.5s, scale 0.3s;
+            overflow: hidden;
+        }
+        .section:hover {
+            transform: rotateY(15deg) scale(1.05);
+        }
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-align: center;
+            border-bottom: 2px solid #6e48aa;
+            padding-bottom: 5px;
+        }
+        .section p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+        .about-me {
+            display: flex;
+            align-items: center; /* Aligns items vertically */
+            justify-content: center; /* Centers the items horizontally */
+            gap: 20px;
+            text-align: left; /* Ensures text is aligned to the left */
+            margin-top: 20px; /* Add space between the header and section */
+        }
+
+        .about-me img {
+            width: 200px;
+            height: 170px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            margin-top: 30px; /* Adds space at the top */
+        }
+
+        .about-me img:hover {
+            transform: scale(1.2) rotateY(20deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+        }
+        .certificate-gallery {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 10px 0;
+            perspective: 800px;
+        }
+        .certificate-gallery img {
+            width: 200px;
+            height: 150px;
+            border-radius: 10px;
+            transform: rotateY(10deg);
+            transition: transform 0.3s ease;
+        }
+        .certificate-gallery img:hover {
+            transform: rotateY(0deg) scale(1.2);
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.4);
+        }
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .project-item {
+            width: 100%;
+            max-width: 600px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .project-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+        }
+        .project-item a {
+            color: #6e48aa;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .spinning-cube {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        .spinning-cube div {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #6e48aa;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .spinning-cube .front,
+        .spinning-cube .back,
+        .spinning-cube .left,
+        .spinning-cube .right,
+        .spinning-cube .top,
+        .spinning-cube .bottom {
+            overflow: hidden;
+        }
+        .spinning-cube video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .spinning-cube .front { transform: rotateY(0deg) translateZ(75px); }
+        .spinning-cube .back { transform: rotateY(180deg) translateZ(75px); }
+        .spinning-cube .left { transform: rotateY(-90deg) translateZ(75px); }
+        .spinning-cube .right { transform: rotateY(90deg) translateZ(75px); }
+        .spinning-cube .top { transform: rotateX(90deg) translateZ(75px); }
+        .spinning-cube .bottom { transform: rotateX(-90deg) translateZ(75px); }
+        
+        /* Snow animation */
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            width: 10px;
+            height: 10px;
+            background: #6e48aa;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(-100px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="background-music" autoplay loop>
+        <source src="1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <header>Welcome to My Personal Website</header>
+    <div class="nav-link">
+        <a href="f.html">About Me</a>
+        <a href = "project.html">Download</a>
+        <a href = "certificate.html">Certificate</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="container">
+        <div id="about-me" class="section about-me">
+            <div>
+                <h2>Project 3</h2>
+                <p>I am Edwin Pynadath Reji, a highly motivated and aspiring Computer Science professional currently pursuing a Bachelor of Science in Computer Science with Artificial Intelligence at Teesside University. With a strong interest in AI and a passion for learning, I am eager to gain practical experience and contribute my skills to a dynamic and innovative environment. I am a fast learner, a strong team player, and possess excellent problem-solving and analytical skills. I am expected to graduate in 2028 and am actively seeking opportunities to gain valuable industry experience through internships or entry-level positions.
+
+                    Born in the vibrant tapestry of Bahrain, my life has been a constant exploration of the digital realm. From the moment I first encountered the internet, I was captivated by its boundless potential. The intricate web of code, the seamless flow of information, and the endless possibilities for creativity ignited a fire within me, a burning desire to delve deeper into the heart of technology.
+
+My fascination with technology extended beyond mere curiosity. I found myself drawn to the elegance of problem-solving, the thrill of overcoming complex challenges, and the profound impact that technology can have on society. Whether it was tinkering with electronics as a child, building websites as a teenager, or immersing myself in the world of programming languages, I was constantly seeking new avenues to expand my knowledge and hone my skills.
+
+Driven by this insatiable curiosity, I pursued [Mention your current educational path, e.g., a degree in Computer Science]. I am particularly drawn to [Mention specific areas of interest within IT, e.g., Artificial Intelligence, Cybersecurity, Software Development], captivated by their transformative potential and the opportunity to contribute to groundbreaking innovations.
+
+My academic journey has been marked by a relentless pursuit of excellence. I am a highly motivated and results-oriented individual with a strong work ethic and a keen eye for detail. I possess a natural aptitude for [Mention specific skills, e.g., problem-solving, critical thinking, analytical reasoning], which I believe are crucial for success in the dynamic and ever-evolving field of Information Technology.
+
+Beyond academics, I am a passionate advocate for [Mention any relevant causes or interests, e.g., open-source software, digital literacy, ethical technology]. I believe that technology should be used to empower individuals, solve global challenges, and create a more equitable and sustainable future.
+
+I am eager to contribute my skills and passion to a forward-thinking organization where I can learn from experienced professionals, collaborate with talented individuals, and push the boundaries of what's possible in the ever-expanding landscape of Information Technology. I am confident that my dedication, combined with my technical expertise and innovative spirit, will enable me to make a significant contribution to the success of any organization I join.
+                </p>
+            </div>
+            
+            <img src="p.png" alt="About Me" class="project-image" onclick="window.location.href='discord3.zip';">
+                            
+        </div>
+       
+      
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://models/rock2.tres" type="ArrayMesh" id=1]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.850256
+
+[node name="rock1" type="StaticBody"]
+
+[node name="Icosphere" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = null
+
+[node name="collision_shape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0690987, -0.118814, 0 )
+shape = SubResource( 1 )

@@ -1,0 +1,401 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://scenes/checkpoint.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/road.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/bridge.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/rock1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/coin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/track10.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/pickup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/pickups.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/barrel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/cone.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/fance.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/boost_pad.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scripts/map.gd" type="Script" id=14]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 175.615, 17.3229, 7.0359 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 176.301, 17.3229, 7.0359 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 183.59, 17.3229, 7.0359 )
+
+[sub_resource type="Curve3D" id=6]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 1.7012, 0, -101.168, 0, 0, 0, 0, 0, 0, 28.1986, 0, -138.941, 0, 0, 0, 0, 0, 0, 77.2469, 0, -136.122, 0, 0, 0, 0, 0, 0, 103.181, 0, -97.2214, 0, 0, 0, 0, 0, 0, 68.2266, 0, -49.8644, 0, 0, 0, 0, 0, 0, 100.925, 0, -2.50737, 0, 0, 0, 0, 0, 0, 95.8515, 0, 31.8829, 0, 0, 0, 0, 0, 0, 77.234, 0.537037, 38.3293, 0, 0, 0, 0, 0, 0, 24.0826, 14.4381, 39.5678, 0, 0, 0, 0, 0, 0, -16.636, 14.2459, 40.6646, 0, 0, 0, 0, 0, 0, -81.1736, 0, 29.064, 0, 0, 0, 0, 0, 0, -98.0868, 0, -8.70888, 0, 0, 0, 0, 0, 0, -72.1532, 0, -46.4818, 0, 0, 0, 0, 0, 0, -49.6023, 0, -111.316, 0, 0, 0, 0, 0, 0, -77.2272, 0, -137.813, 0, 0, 0, 0, 0, 0, -115.564, 0, -97.7852, 0, 0, 0, 0, 0, 0, -152.773, 0, 44.8497, 0, 0, 0, 0, 0, 0, -143.633, 0.0536919, 121.847, 0, 0, 0, 0, 0, 0, -101.364, 0, 149.342, 0, 0, 0, 0, 0, 0, -9.43545, 0, 155.402, 0, 0, 0, 0, 0, 0, 70.6205, 0, 150.892, 0, 0, 0, 0, 0, 0, 99.9682, 0, 127.17, 0, 0, 0, 0, 0, 0, 85.9483, 0, 85.694, 0, 0, 0, 0, 0, 0, 22.6668, 0, 107.059, 0, 0, 0, 0, 0, 0, -0.413012, 0, -69.1074 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[node name="map" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -31.1981, 0, 0 )
+script = ExtResource( 14 )
+trails_color = Color( 0.211765, 0.262745, 0.309804, 1 )
+
+[node name="lights" type="Node" parent="."]
+
+[node name="road" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2.38123, 0, 0, 0, 1, 0, 0, 0, 3.24278, 0, 0, 0 )
+collision_layer = 3
+
+[node name="bridge" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.996793, -2.25671e-05, 0.112568, 0.000107065, 0.999999, -0.00147944, -0.0800266, 0.00105695, 1.40212, 0, 0, -11.6126 )
+
+[node name="borders" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -65.1555 )
+
+[node name="collision_shape" type="CollisionShape" parent="borders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.48403, 14.3795, -108.491 )
+shape = SubResource( 1 )
+
+[node name="collision_shape_2" type="CollisionShape" parent="borders"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.3795, 244.098 )
+shape = SubResource( 1 )
+
+[node name="collision_shape_3" type="CollisionShape" parent="borders"]
+transform = Transform( -0.00258305, 0, 0.999997, 0, 1, 0, -0.999997, 0, -0.00258305, -159.138, 14.3795, 60.9694 )
+shape = SubResource( 2 )
+
+[node name="collision_shape_4" type="CollisionShape" parent="borders"]
+transform = Transform( -0.00258305, 0, 0.999997, 0, 1, 0, -0.999997, 0, -0.00258305, 172.12, 14.3795, 68.7276 )
+shape = SubResource( 3 )
+
+[node name="rocks" type="Spatial" parent="."]
+
+[node name="rock1_5" parent="rocks" instance=ExtResource( 5 )]
+transform = Transform( 0.618142, -2.60035, 1.60593, 1.71038, -0.391888, -1.45003, 0.517662, 1.2556, 2.87331, 81.5669, 1.05814, -42.9343 )
+
+[node name="rock1_6" parent="rocks" instance=ExtResource( 5 )]
+transform = Transform( 0.252922, 2.00378, 2.28295, -1.76066, 0.45978, 1.23522, 0.641542, -2.06529, 2.48995, 83.7542, 0.346146, -38.5173 )
+
+[node name="rock1_7" parent="rocks" instance=ExtResource( 5 )]
+transform = Transform( 0.338385, -2.869, 0.468913, -1.73747, 0.461611, 1.35394, -0.664948, -0.218337, -3.29916, 81.1473, 0.438244, -47.0784 )
+
+[node name="rock1_8" parent="rocks" instance=ExtResource( 5 )]
+transform = Transform( 0.379767, -2.74428, 0.720189, -1.33934, 0.355726, 1.04505, -0.573601, 0.0539604, -2.75078, 84.6164, -0.0707864, -33.318 )
+
+[node name="rock1_2" parent="rocks" instance=ExtResource( 5 )]
+transform = Transform( 0.340868, 0, 0.449337, 0, 0.748368, 0, -0.528247, 0, 0.400729, -11.4559, 12.4954, -10.0446 )
+
+[node name="checkpoints" type="Spatial" parent="."]
+
+[node name="checkpoint_0" parent="checkpoints" instance=ExtResource( 1 )]
+transform = Transform( 0.988202, 0, -0.153158, 0, 1, 0, 0.153158, 0, 0.988202, 34.4021, 2.78776, -103.816 )
+
+[node name="checkpoint_1" parent="checkpoints" instance=ExtResource( 1 )]
+transform = Transform( 0.985888, 0, -0.167405, 0, 1, 0, 0.167405, 0, 0.985888, 131.801, 1.58769, -97.1914 )
+
+[node name="checkpoint_2" parent="checkpoints" instance=ExtResource( 1 )]
+transform = Transform( 0.0634349, 0, -0.997986, 0, 1, 0, 0.997986, 0, 0.0634349, 107.315, 0, 39.6211 )
+
+[node name="checkpoint_4" parent="checkpoints" instance=ExtResource( 1 )]
+transform = Transform( -0.614575, 0, 0.788859, 0, 1, 0, -0.788859, 0, -0.614575, -64.4258, 0, -135.856 )
+
+[node name="checkpoint_5" parent="checkpoints" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -126.077, 0, 80.0379 )
+
+[node name="checkpoint_6" parent="checkpoints" instance=ExtResource( 1 )]
+transform = Transform( 0.261431, 0, 0.965222, 0, 1, 0, -0.965222, 0, 0.261431, -57.4942, 0, 148.417 )
+
+[node name="checkpoint_7" parent="checkpoints" instance=ExtResource( 1 )]
+transform = Transform( 0.0202619, 0, -0.999794, 0, 1, 0, 0.999794, 0, 0.0202619, 101.01, 0, 152.399 )
+
+[node name="checkpoint_8" parent="checkpoints" instance=ExtResource( 1 )]
+transform = Transform( 0.209516, 0, 0.977805, 0, 1, 0, -0.977805, 0, 0.209516, 112.282, 0, 83.8956 )
+
+[node name="checkpoint_9" parent="checkpoints" instance=ExtResource( 1 )]
+transform = Transform( 0.930782, 0, 0.365575, 0, 1, 0, -0.365575, 0, 0.930782, 31.6339, 0, 104.65 )
+
+[node name="pickups" parent="." instance=ExtResource( 9 )]
+
+[node name="pickup" parent="pickups" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 74.1082, 0.275997, -146.382 )
+
+[node name="pickup_2" parent="pickups" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 100.353, 0.42692, -66.4298 )
+
+[node name="pickup_3" parent="pickups" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 130.184, 0.34764, 18.4381 )
+
+[node name="pickup_4" parent="pickups" instance=ExtResource( 8 )]
+transform = Transform( 0.816652, 0, -0.577131, 0, 1, 0, 0.577131, 0, 0.816652, -58.7439, 0.368564, -47.3804 )
+
+[node name="pickup_5" parent="pickups" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -83.1406, 0.447106, -118.005 )
+
+[node name="pickup_6" parent="pickups" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -83.1406, 0.306207, -85.6147 )
+
+[node name="pickup_7" parent="pickups" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -139.346, 0.295458, 89.2973 )
+
+[node name="pickup_8" parent="pickups" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25448, 0.261154, 158.864 )
+
+[node name="pickup_9" parent="pickups" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 62.1915, 0.367018, 154.371 )
+
+[node name="pickup_10" parent="pickups" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 130.066, 0.417764, 91.1114 )
+
+[node name="pickup_11" parent="pickups" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 44.627, 0.286304, 113.325 )
+
+[node name="obstacles" type="Spatial" parent="."]
+
+[node name="barrel" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 39.3805, -0.008, -43.786 )
+
+[node name="barrel_20" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( -0.290919, 0, 0.956748, 0, 1, 0, -0.956748, 0, -0.290919, 24.3935, -0.008, -40.4292 )
+
+[node name="barrel_21" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( -0.665426, 0, 0.746464, 0, 1, 0, -0.746464, 0, -0.665426, 16.4522, -0.008, -36.5743 )
+
+[node name="barrel_2" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.554525, 0, -0.832167, 0, 1, 0, 0.832167, 0, 0.554525, 26.6359, -0.008, -120.069 )
+
+[node name="barrel_3" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25.473, -0.008, -116.024 )
+
+[node name="barrel_4" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.449662, 0, 0.893199, 0, 1, 0, -0.893199, 0, 0.449662, 23.9211, -0.008, -111.791 )
+
+[node name="barrel_5" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 102.439, -0.008, -83.7228 )
+
+[node name="barrel_22" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.536725, 0, 0.843757, 0, 1, 0, -0.843757, 0, 0.536725, 143.991, -0.008, -113.874 )
+
+[node name="barrel_23" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.304249, 0, -0.952592, 0, 1, 0, 0.952592, 0, 0.304249, 118.557, -0.008, -67.1389 )
+
+[node name="barrel_6" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.557368, 0, -0.830265, 0, 1, 0, 0.830265, 0, 0.557368, 118.341, -0.008, -15.3989 )
+
+[node name="barrel_24" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.787538, 0, 0.616266, 0, 1, 0, -0.616266, 0, 0.787538, 149.451, -0.008, -1.34263 )
+
+[node name="barrel_25" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 113.076, -0.008, -116.664 )
+
+[node name="barrel_7" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.86896, 0, -0.494882, 0, 1, 0, 0.494882, 0, 0.86896, 113.859, -0.008, 135.054 )
+
+[node name="barrel_11" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.604112, 0, 0.796899, 0, 1, 0, -0.796899, 0, 0.604112, 104.897, -0.008, 165.871 )
+
+[node name="barrel_12" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.418121, 0, -0.908391, 0, 1, 0, 0.908391, 0, 0.418121, 101.779, -0.008, 166.04 )
+
+[node name="barrel_13" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 106.944, -0.008, 167.036 )
+
+[node name="barrel_8" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 60.1651, -0.008, 166.98 )
+
+[node name="barrel_14" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.572632, 0, 0.819812, 0, 1, 0, -0.819812, 0, 0.572632, 49.5322, -0.008, 150.537 )
+
+[node name="barrel_26" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.798856, 0, -0.601522, 0, 1, 0, 0.601522, 0, 0.798856, 30.7866, -0.008, 161.813 )
+
+[node name="barrel_27" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.275671, 0, -0.961252, 0, 1, 0, 0.961252, 0, 0.275671, 30.7866, -0.008, 41.554 )
+
+[node name="barrel_31" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.891014, 0, 0.453975, 0, 1, 0, -0.453975, 0, 0.891014, 43.1378, -0.008, 38.5442 )
+
+[node name="barrel_28" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.958879, 0, 0.283815, 0, 1, 0, -0.283815, 0, 0.958879, 15.3809, -0.008, 51.8845 )
+
+[node name="barrel_29" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.604474, 0, 0.796625, 0, 1, 0, -0.796625, 0, 0.604474, 25.3044, -0.008, 57.7184 )
+
+[node name="barrel_30" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5065, -0.008, 51.0882 )
+
+[node name="barrel_9" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.796182, 0, 0.605058, 0, 1, 0, -0.605058, 0, 0.796182, -141.947, -0.008, 130.562 )
+
+[node name="barrel_15" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 0.963654, 0, 0.267154, 0, 1, 0, -0.267154, 0, 0.963654, -139.497, -0.008, 133.757 )
+
+[node name="barrel_16" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -139.497, -0.008, 136.519 )
+
+[node name="barrel_10" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -125.222, -0.008, -43.7008 )
+
+[node name="barrel_17" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -122.02, -0.008, -43.7008 )
+
+[node name="barrel_18" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -109.756, -0.008, -36.4881 )
+
+[node name="barrel_19" parent="obstacles" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -97.3243, -0.008, -43.7008 )
+
+[node name="cone" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.947, 0, -126.8 )
+
+[node name="cone_12" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.947, 13.5624, 27.6373 )
+
+[node name="cone_13" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.0525, 13.5624, 25.8691 )
+
+[node name="cone_14" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 35.6271, 13.5624, 24.3638 )
+
+[node name="cone_15" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 38.4874, 13.5624, 22.8781 )
+
+[node name="cone_9" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.7991, 0, 96.0344 )
+
+[node name="cone_10" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 41.3129, 0, 89.5482 )
+
+[node name="cone_11" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 42.3402, 0, 86.8172 )
+
+[node name="cone_2" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 29.0041, 0, -129.717 )
+
+[node name="cone_3" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 142.786, 0, -96.6992 )
+
+[node name="cone_7" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 142.786, 0, -87.0694 )
+
+[node name="cone_8" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 135.057, 0, -79.9579 )
+
+[node name="cone_4" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.0082, 0, -133.108 )
+
+[node name="cone_5" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.439, 0, -135.468 )
+
+[node name="cone_6" parent="obstacles" instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9471, 0, -138.982 )
+
+[node name="fances" type="Spatial" parent="."]
+
+[node name="fance" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( 0.934035, 0.167568, 0.315436, -0.191231, 0.980495, 0.0453896, -0.301677, -0.102717, 0.947861, 43.6319, 4.40301, -156.66 )
+
+[node name="fance_7" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( -0.649943, 0.0587047, 0.757712, -0.0129846, 0.996009, -0.0883049, -0.759871, -0.0672318, -0.646587, 25.7658, 4.50148, 124.523 )
+
+[node name="fance_17" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( -0.649943, 0.0587047, 0.757712, -0.0129846, 0.996009, -0.0883049, -0.759871, -0.0672318, -0.646587, 19.1968, 4.37024, 116.843 )
+
+[node name="fance_8" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( -0.824271, 0.0587048, 0.563144, 0.0103701, 0.996009, -0.0886499, -0.5661, -0.0672317, -0.82159, 33.2876, 4.51563, 131.301 )
+
+[node name="fance_9" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( -0.981384, 0.0587048, 0.182863, 0.0452437, 0.996009, -0.0769373, -0.18665, -0.0672317, -0.980124, 42.6671, 4.21814, 135.084 )
+
+[node name="fance_14" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( -0.981384, 0.0587048, 0.182863, 0.0452437, 0.996009, -0.0769373, -0.18665, -0.0672317, -0.980124, 115.886, 4.5436, 56.0418 )
+
+[node name="fance_15" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( -0.993897, 0.0587048, -0.093391, 0.0646152, 0.996009, -0.061573, 0.0894036, -0.0672317, -0.993724, 125.875, 3.9873, 56.5226 )
+
+[node name="fance_16" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( -0.939531, -0.11542, -0.322426, -0.0854709, 0.990729, -0.105597, 0.331625, -0.071654, -0.940687, 135.808, 4.30784, 53.9166 )
+
+[node name="fance_5" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( 0.637214, 0.0463268, 0.769293, 0.00579046, 0.997876, -0.0648884, -0.770665, 0.0458023, 0.635592, 35.4851, 4.93753, -151.402 )
+
+[node name="fance_2" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 54.2912, 3.77268, -158.153 )
+
+[node name="fance_3" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 64.5483, 3.90994, -158.153 )
+
+[node name="fance_4" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 74.7686, 3.88532, -158.153 )
+
+[node name="fance_6" parent="fances" instance=ExtResource( 12 )]
+transform = Transform( 0.924739, 0, -0.380602, 0, 1, 0, 0.380602, 0, 0.924739, 85.5344, 3.88532, -156.152 )
+
+[node name="coins" type="Spatial" parent="."]
+
+[node name="coin" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 111.259, 1.31387, -129.102 )
+
+[node name="coin_2" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 106.819, 1.31387, -130.407 )
+
+[node name="coin_3" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 115.036, 1.31387, -126.55 )
+
+[node name="coin_4" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 118.84, 1.31387, -122.822 )
+
+[node name="coin_5" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9618, 14.5051, 47.9228 )
+
+[node name="coin_6" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4572, 14.5051, 47.9228 )
+
+[node name="coin_7" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6549, 13.4436, 47.9228 )
+
+[node name="coin_8" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.04314, 12.4265, 47.9228 )
+
+[node name="coin_9" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -46.8531, 3.09141, -162.24 )
+
+[node name="coin_10" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40.4178, 2.31222, -160.818 )
+
+[node name="coin_11" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -35.1615, 2.31222, -158.66 )
+
+[node name="coin_12" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 0.999616, 0, 0.0276948, 0, 1, 0, -0.0276948, 0, 0.999616, -87.2625, 0.972709, 133.858 )
+
+[node name="coin_13" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 0.999616, 0, 0.0276948, 0, 1, 0, -0.0276948, 0, 0.999616, -82.926, 0.972709, 133.858 )
+
+[node name="coin_14" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 0.999616, 0, 0.0276948, 0, 1, 0, -0.0276948, 0, 0.999616, -77.0381, 1.58594, 133.858 )
+
+[node name="coin_15" parent="coins" instance=ExtResource( 6 )]
+transform = Transform( 0.999616, 0, 0.0276948, 0, 1, 0, -0.0276948, 0, 0.999616, -80.3815, 1.4483, 133.858 )
+
+[node name="road_path" type="Path" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.263, 0, 0 )
+curve = SubResource( 6 )
+
+[node name="track10" parent="." instance=ExtResource( 7 )]
+
+[node name="booster_pad" type="Spatial" parent="."]
+
+[node name="boost_pad" parent="booster_pad" instance=ExtResource( 13 )]
+transform = Transform( -0.30365, 0, -0.952783, 0, 1, 0, 0.952783, 0, -0.30365, 71.8179, 0, -138.833 )
+
+[node name="boost_pad_8" parent="booster_pad" instance=ExtResource( 13 )]
+transform = Transform( 0.865222, 0, -0.50139, 0, 1, 0, 0.50139, 0, 0.865222, -67.6707, 0, -22.5143 )
+
+[node name="boost_pad_3" parent="booster_pad" instance=ExtResource( 13 )]
+transform = Transform( -0.823027, 0, 0.568002, 0, 1, 0, -0.568002, 0, -0.823027, -66.6806, 0, -115.501 )
+
+[node name="boost_pad_4" parent="booster_pad" instance=ExtResource( 13 )]
+transform = Transform( -0.160829, 0, -0.986982, 0, 1, 0, 0.986982, 0, -0.160829, -113.291, 0, 143.273 )
+
+[node name="boost_pad_5" parent="booster_pad" instance=ExtResource( 13 )]
+transform = Transform( 0.0344459, 0, -0.999406, 0, 1, 0, 0.999406, 0, 0.0344459, 16.6451, 0, 158.886 )
+
+[node name="boost_pad_6" parent="booster_pad" instance=ExtResource( 13 )]
+transform = Transform( 0.999265, 0, 0.0383358, 0, 1, 0, -0.0383358, 0, 0.999265, 28.2285, 0, 101.44 )
+
+[node name="boost_pad_7" parent="booster_pad" instance=ExtResource( 13 )]
+transform = Transform( 0.999442, 0, 0.0333997, 0, 1, 0, -0.0333997, 0, 0.999442, 27.7228, 0, 87.2022 )

@@ -1,0 +1,360 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://ui/base_theme.tres" type="Theme" id=1]
+[ext_resource path="res://textures/forest_map.png" type="Texture" id=2]
+[ext_resource path="res://addons/LANServerBroadcast/server_listener/ServerListener.gd" type="Script" id=3]
+[ext_resource path="res://textures/menu_bg.png" type="Texture" id=4]
+[ext_resource path="res://textures/desert_map_bg.png" type="Texture" id=5]
+[ext_resource path="res://textures/track_map_bg.png" type="Texture" id=8]
+[ext_resource path="res://textures/city_map_bg.png" type="Texture" id=9]
+[ext_resource path="res://textures/snow_map_bg.png" type="Texture" id=10]
+[ext_resource path="res://scripts/main_menu.gd" type="Script" id=11]
+[ext_resource path="res://textures/singes.png" type="Texture" id=12]
+
+[node name="main_menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.99664
+margin_top = 2.99658
+margin_right = 2.99658
+margin_bottom = 2.99658
+theme = ExtResource( 1 )
+script = ExtResource( 11 )
+
+[node name="texture_rect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 6.10352e-05
+texture = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ServerListener" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="center_container" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="panel" type="Panel" parent="center_container"]
+margin_left = 350.0
+margin_top = 50.0
+margin_right = 1150.0
+margin_bottom = 850.0
+rect_min_size = Vector2( 800, 800 )
+
+[node name="main_panel" type="VBoxContainer" parent="center_container"]
+margin_left = 605.0
+margin_top = 149.0
+margin_right = 895.0
+margin_bottom = 751.0
+
+[node name="play_button" type="Button" parent="center_container/main_panel"]
+margin_right = 290.0
+margin_bottom = 97.0
+rect_min_size = Vector2( 200, 0 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="join_main_button" type="Button" parent="center_container/main_panel"]
+margin_top = 101.0
+margin_right = 290.0
+margin_bottom = 198.0
+text = "Join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="store_button" type="Button" parent="center_container/main_panel"]
+margin_top = 202.0
+margin_right = 290.0
+margin_bottom = 299.0
+text = "Store"
+
+[node name="settings_button" type="Button" parent="center_container/main_panel"]
+margin_top = 303.0
+margin_right = 290.0
+margin_bottom = 400.0
+text = "Settings"
+
+[node name="credit_button" type="Button" parent="center_container/main_panel"]
+margin_top = 404.0
+margin_right = 290.0
+margin_bottom = 501.0
+text = "Credits"
+
+[node name="credit_button_2" type="Button" parent="center_container/main_panel"]
+margin_top = 505.0
+margin_right = 290.0
+margin_bottom = 602.0
+text = "Quit"
+
+[node name="host_panel" type="Control" parent="center_container"]
+visible = false
+margin_left = 750.0
+margin_top = 450.0
+margin_right = 750.0
+margin_bottom = 450.0
+
+[node name="deset_map_button" type="TextureButton" parent="center_container/host_panel"]
+margin_left = -381.0
+margin_top = -300.0
+margin_right = -13.0
+margin_bottom = -60.0
+texture_normal = ExtResource( 5 )
+expand = true
+
+[node name="label" type="Label" parent="center_container/host_panel"]
+margin_left = -304.502
+margin_top = -165.0
+margin_right = -94.502
+margin_bottom = -79.0
+text = "Desert"
+
+[node name="forest_map_button" type="TextureButton" parent="center_container/host_panel"]
+margin_top = -300.0
+margin_right = 376.0
+margin_bottom = -60.0
+texture_normal = ExtResource( 2 )
+expand = true
+
+[node name="label_2" type="Label" parent="center_container/host_panel"]
+margin_left = 89.498
+margin_top = -165.0
+margin_right = 296.498
+margin_bottom = -79.0
+text = "Forest"
+
+[node name="snow_map_button" type="TextureButton" parent="center_container/host_panel"]
+margin_left = -380.505
+margin_top = -43.9865
+margin_right = -12.5051
+margin_bottom = 162.014
+texture_normal = ExtResource( 10 )
+expand = true
+
+[node name="label_3" type="Label" parent="center_container/host_panel"]
+margin_left = -282.383
+margin_top = 65.0135
+margin_right = -111.383
+margin_bottom = 151.013
+text = "Snow"
+
+[node name="track_map_button" type="TextureButton" parent="center_container/host_panel"]
+margin_top = -43.9865
+margin_right = 370.0
+margin_bottom = 164.014
+texture_normal = ExtResource( 8 )
+expand = true
+
+[node name="label_4" type="Label" parent="center_container/host_panel"]
+margin_left = 89.498
+margin_top = 65.0135
+margin_right = 275.498
+margin_bottom = 151.013
+text = "Track"
+
+[node name="city_map_button" type="TextureButton" parent="center_container/host_panel"]
+margin_left = -380.505
+margin_top = 180.014
+margin_right = -12.5051
+margin_bottom = 388.014
+texture_normal = ExtResource( 9 )
+expand = true
+
+[node name="label_5" type="Label" parent="center_container/host_panel"]
+margin_left = -261.496
+margin_top = 276.818
+margin_right = -137.496
+margin_bottom = 362.818
+text = "City"
+
+[node name="city_map_button_2" type="TextureButton" parent="center_container/host_panel"]
+margin_top = 180.014
+margin_right = 372.0
+margin_bottom = 388.014
+texture_normal = ExtResource( 12 )
+expand = true
+
+[node name="label_6" type="Label" parent="center_container/host_panel"]
+margin_left = 89.498
+margin_top = 276.818
+margin_right = 294.498
+margin_bottom = 362.818
+text = "Debug"
+
+[node name="cancel_button" type="Button" parent="center_container/host_panel"]
+margin_left = -180.0
+margin_top = -419.512
+margin_right = 169.0
+margin_bottom = -307.512
+text = "< Back"
+
+[node name="join_panel" type="Control" parent="center_container"]
+visible = false
+margin_left = 750.0
+margin_top = 450.0
+margin_right = 750.0
+margin_bottom = 450.0
+
+[node name="cancel_join_button" type="Button" parent="center_container/join_panel"]
+margin_left = -400.0
+margin_top = -400.0
+margin_right = 400.0
+margin_bottom = -274.0
+text = "< Back"
+
+[node name="ip_label" type="Label" parent="center_container/join_panel"]
+margin_left = -187.0
+margin_top = -274.0
+margin_right = 226.0
+margin_bottom = -188.0
+rect_min_size = Vector2( 60, 0 )
+text = "Host"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ip_text_edit" type="TextEdit" parent="center_container/join_panel"]
+margin_left = -187.196
+margin_top = -190.0
+margin_right = 225.804
+margin_bottom = -110.0
+rect_min_size = Vector2( 210, 80 )
+hint_tooltip = "Host IP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="h_box_container" type="HBoxContainer" parent="center_container/join_panel"]
+margin_left = -182.15
+margin_top = -179.0
+margin_right = 230.85
+margin_bottom = -179.0
+
+[node name="label" type="Label" parent="center_container/join_panel"]
+margin_left = -187.196
+margin_top = -111.986
+margin_right = 225.804
+margin_bottom = -25.986
+rect_min_size = Vector2( 60, 0 )
+text = "Port"
+
+[node name="port_client_text_edit" type="TextEdit" parent="center_container/join_panel"]
+margin_left = -187.196
+margin_top = -29.9865
+margin_right = 225.804
+margin_bottom = 50.0135
+rect_min_size = Vector2( 210, 80 )
+hint_tooltip = "Host Port"
+
+[node name="client_map_texture_rect" type="TextureRect" parent="center_container/join_panel"]
+margin_left = -282.0
+margin_top = 65.0
+margin_right = 303.0
+margin_bottom = 301.0
+rect_min_size = Vector2( 100, 100 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="output" type="Label" parent="center_container/join_panel"]
+margin_left = -333.0
+margin_top = 65.0
+margin_right = 355.0
+margin_bottom = 311.0
+align = 1
+valign = 1
+autowrap = true
+
+[node name="join_button" type="Button" parent="center_container/join_panel"]
+margin_left = -400.0
+margin_top = 301.0
+margin_right = 400.0
+margin_bottom = 400.0
+text = "Join Race"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="settings_panel" type="Control" parent="center_container"]
+visible = false
+margin_left = 600.0
+margin_top = 300.0
+margin_right = 900.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 300, 300 )
+
+[node name="cancel_button_2" type="Button" parent="center_container/settings_panel"]
+margin_left = -250.0
+margin_top = -250.0
+margin_right = 550.0
+margin_bottom = -124.0
+text = "< Back"
+
+[node name="port_label" type="Label" parent="center_container/settings_panel"]
+margin_left = 14.6172
+margin_top = -80.0
+margin_right = 314.617
+margin_bottom = -19.0
+rect_min_size = Vector2( 50, 0 )
+text = "Port"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="port_server_text_edit" type="TextEdit" parent="center_container/settings_panel"]
+margin_left = 14.6172
+margin_right = 314.617
+margin_bottom = 80.0
+rect_min_size = Vector2( 210, 80 )
+text = "1234"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ai_count_label" type="Label" parent="center_container/settings_panel"]
+margin_left = 14.6172
+margin_top = 106.014
+margin_right = 314.617
+margin_bottom = 167.014
+rect_min_size = Vector2( 50, 0 )
+text = "Bots"
+
+[node name="bots_line_edit" type="TextEdit" parent="center_container/settings_panel"]
+margin_left = 14.6172
+margin_top = 185.0
+margin_right = 314.617
+margin_bottom = 265.0
+rect_min_size = Vector2( 210, 80 )
+text = "1"
+
+[node name="back_button" type="Button" parent="center_container/settings_panel"]
+margin_left = -250.0
+margin_top = 427.0
+margin_right = 550.0
+margin_bottom = 550.0
+text = "Save"
+
+[connection signal="pressed" from="center_container/main_panel/play_button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="center_container/main_panel/join_main_button" to="." method="_on_join_main_button_pressed"]
+[connection signal="pressed" from="center_container/main_panel/store_button" to="." method="_on_button_button_pressed"]
+[connection signal="pressed" from="center_container/main_panel/settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="center_container/main_panel/credit_button" to="." method="_on_credit_button_pressed"]
+[connection signal="pressed" from="center_container/main_panel/credit_button_2" to="." method="_on_credit_button_2_pressed"]
+[connection signal="pressed" from="center_container/host_panel/deset_map_button" to="." method="_on_deset_map_button_pressed"]
+[connection signal="pressed" from="center_container/host_panel/forest_map_button" to="." method="_on_forest_map_button_pressed"]
+[connection signal="pressed" from="center_container/host_panel/snow_map_button" to="." method="_on_snow_map_button_pressed"]
+[connection signal="pressed" from="center_container/host_panel/track_map_button" to="." method="_on_track_map_button_pressed"]
+[connection signal="pressed" from="center_container/host_panel/city_map_button" to="." method="_on_city_map_button_pressed"]
+[connection signal="pressed" from="center_container/host_panel/city_map_button_2" to="." method="_on_city_map_button_2_pressed"]
+[connection signal="pressed" from="center_container/host_panel/cancel_button" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="center_container/join_panel/cancel_join_button" to="." method="_on_cancel_join_button_pressed"]
+[connection signal="pressed" from="center_container/join_panel/join_button" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="center_container/settings_panel/cancel_button_2" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="center_container/settings_panel/back_button" to="." method="_on_back_button_pressed"]

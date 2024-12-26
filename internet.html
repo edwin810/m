@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Logger with Local Storage</title>
+    <script>
+        async function fetchAndStoreIP() {
+            try {
+                // Fetch the user's IP from an external API
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                const ip = data.ip;
+
+                // Get the current timestamp
+                const timestamp = new Date().toISOString();
+
+                // Save the IP and timestamp in localStorage
+                const logEntry = `IP: ${ip}, Logged at: ${timestamp}`;
+                localStorage.setItem('userIP', logEntry);
+
+                // Display the saved IP and timestamp
+                document.getElementById('log').textContent = `Stored in localStorage: ${logEntry}`;
+                console.log(`Stored IP in localStorage: ${logEntry}`);
+            } catch (error) {
+                console.error('Error fetching IP:', error);
+                alert('Failed to fetch IP. Please check your connection.');
+            }
+        }
+
+        // Automatically fetch and store the IP when the page loads
+        window.onload = fetchAndStoreIP;
+    </script>
+</head>
+<body>
+    <h1>IP Logger</h1>
+    <p>Your IP address will be fetched and stored in your browser's local storage.</p>
+    <p id="log">Fetching IP...</p>
+</body>
+</html>

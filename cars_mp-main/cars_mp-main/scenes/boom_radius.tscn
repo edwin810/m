@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://sound/explosions.wav" type="AudioStream" id=1]
+[ext_resource path="res://scripts/boom_radius.gd" type="Script" id=2]
+[ext_resource path="res://models/shard.tres" type="PrismMesh" id=3]
+
+[sub_resource type="SphereShape" id=6]
+radius = 8.29294
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 0.543182 ), 0.0, 0.0, 0, 0, Vector2( 0.947991, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="boom_radius" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.641, 0 )
+
+[node name="collision_shape" type="CollisionShape" parent="area"]
+shape = SubResource( 6 )
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="particles" type="CPUParticles" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.0136306, 0.999907, 0, -0.999907, 0.0136306, 0, -0.641, 5.65515 )
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+mesh = ExtResource( 3 )
+flag_align_y = true
+flag_disable_z = true
+spread = 180.0
+initial_velocity = 30.0
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+orbit_velocity_curve = null
+radial_accel = 6.79
+radial_accel_random = 1.0
+angle = 360.0
+scale_amount_curve = SubResource( 7 )
+
+[node name="audio_stream_player_3d" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 1 )
+unit_db = 30.0
+autoplay = true
+
+[connection signal="body_entered" from="area" to="." method="_on_area_body_entered"]
